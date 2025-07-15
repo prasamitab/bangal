@@ -250,11 +250,6 @@
             opacity: 0.7;
         }
 
-        @keyframes globeRotate {
-            from { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg); }
-            to { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg); }
-        }
-
         @keyframes radarSweep {
             from { transform: translate(-50%, -50%) rotate(-90deg); }
             to { transform: translate(-50%, -50%) rotate(270deg); }
@@ -728,6 +723,7 @@
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
+            border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -762,15 +758,17 @@
         }
         .photo-grid img {
             width: 100%;
-            height: 120px;
-            object-fit: cover;
+            height: 180px; /* Increased height for larger frames */
+            object-fit: contain; /* Ensure the whole image fits within the frame */
             border-radius: 8px;
             border: 2px solid #00ffcc;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.3s ease; /* Added border-color to transition */
+            cursor: pointer; /* Indicate clickable */
         }
         .photo-grid img:hover {
             transform: scale(1.05);
+            border-color: #ffd700; /* Highlight on hover */
         }
 
         /* Video element styling */
@@ -1044,325 +1042,6 @@
         }
         .console-output .error {
             color: #ef4444; /* Red for errors */
-        }
-
-        /* Photo grid for memory gallery */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .photo-grid img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #00ffcc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
-        }
-        .photo-grid img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Video element styling */
-        .section video {
-            width: 100%;
-            max-width: 560px;
-            height: auto;
-            border-radius: 10px;
-            border: 3px solid #00ffcc;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin-top: 20px;
-        }
-
-        /* General section content styling */
-        .section h1, .section h2 {
-            color: #00ffcc;
-            margin-bottom: 15px;
-            text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
-        }
-        /* Updated h2 styling for bigger and bolder */
-        .section h2 {
-            font-size: 2.5rem; /* Increased font size */
-            font-weight: 800; /* Bolder */
-            margin-bottom: 25px; /* More spacing */
-        }
-
-        .section p, .section ul, .section blockquote {
-            color: #e2e8f0;
-            margin-bottom: 10px;
-        }
-        .section ul {
-            list-style: none;
-            padding: 0;
-        }
-        /* New style for list items in Scientist Profile */
-        .section-2-list li {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSlideUp 0.6s ease-out forwards;
-            font-size: 1.15rem; /* Slightly larger font for list items */
-            font-weight: 600; /* Bolder font for list items */
-        }
-        @keyframes fadeInSlideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section ul li {
-            background-color: #2d3748;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            border-left: 3px solid #00ffcc;
-            text-align: left;
-            box-shadow: 0 2px 5px rgba(0, 255, 204, 0.1);
-        }
-        .section blockquote {
-            font-style: italic;
-            border-left: 4px solid #00ffcc;
-            padding-left: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            color: #b0e0e6;
-        }
-        .section code {
-            background-color: #2d3748;
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: #00ffcc;
-            font-family: 'Space Mono', monospace;
-            display: inline-block;
-            margin-top: 10px;
-            box-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
-            animation: code-glow 2s infinite alternate; /* Continuous glow for code */
-        }
-        @keyframes code-glow {
-            from { box-shadow: 0 0 5px rgba(0, 255, 204, 0.3); }
-            to { box-shadow: 0 0 15px rgba(0, 255, 204, 0.8); }
-        }
-
-        /* Nobel Prize section styling */
-        .nobel-prize-section {
-            background-color: #111;
-            padding: 30px;
-            border-radius: 15px;
-            border: 3px solid #ffd700;
-            box-shadow: 0 0 20px rgba(255,215,0,0.5);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        .nobel-prize-section h2 {
-            color: #ffd700;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255,215,0,0.7);
-        }
-        .nobel-prize-section p {
-            color: #e2e8f0;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-        .nobel-prize-section strong {
-            color: #ffd700;
-        }
-        .nobel-prize-section .footer-text {
-            font-style: italic;
-            color: #00ffcc;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Mission Panel specific styles */
-        .mission-panel-container {
-            position: relative;
-            overflow: hidden;
-            background-color: #0d121c; /* Darker background for the panel content */
-            border: 3px solid #00ffcc; /* More prominent border */
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5); /* Stronger glow */
-            border-radius: 15px; /* More rounded corners */
-            padding: 30px; /* Increased padding */
-            transition: all 0.3s ease-in-out;
-        }
-        .mission-panel-container:hover {
-            transform: scale(1.02); /* Slight scale on hover */
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.8); /* Even stronger glow on hover */
-        }
-
-        .mission-panel-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 204, 0.15) 50%, transparent 100%); /* Stronger scanline */
-            animation: scanline 3s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        /* Style for the individual module items within the grid */
-        .mission-panel-item {
-            background-color: rgba(45, 55, 72, 0.8); /* Slightly lighter background for items */
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 255, 204, 0.1);
-        }
-        .mission-panel-item:hover {
-            background-color: rgba(60, 75, 95, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 255, 204, 0.3);
-        }
-        .mission-panel-item strong {
-            color: #00ffcc; /* Highlight bold labels */
-            font-size: 0.9rem; /* Slightly smaller for labels */
-            text-transform: uppercase; /* Uppercase for labels */
-            letter-spacing: 0.05em;
-            display: block; /* Ensure they take full width */
-            margin-bottom: 5px;
-        }
-        .mission-panel-item p {
-            color: #e2e8f0;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        /* Styles for the activation message */
-        #activationMessage {
-            background-color: rgba(0, 255, 204, 0.9);
-            color: #1a202c;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
-            font-family: 'Space Mono', monospace;
-            font-size: 1.1rem;
-        }
-        #activationMessage.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- DNA of My Dad Section (New Section 12) --- */
-        .dna-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px auto;
-            max-width: 500px;
-            text-align: left;
-        }
-        .dna-section li {
-            background-color: #1a202c;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 4px solid #00ffcc;
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-            display: flex;
-            align-items: center;
-            font-family: 'Space Mono', monospace;
-            font-size: 1.1rem;
-        }
-        .dna-section li strong {
-            color: #ffd700;
-            margin-right: 10px;
-            font-size: 1.2em;
-        }
-        .dna-section li span {
-            color: #e2e8f0;
-        }
-
-        /* --- Dad Joke Console Section (New Section 13) --- */
-        .console-container {
-            background-color: #0d121c;
-            border: 2px solid #00ffcc;
-            border-radius: 10px;
-            padding: 20px;
-            width: 90%;
-            max-width: 600px;
-            margin: 20px auto;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
-            font-family: 'Space Mono', monospace;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            min-height: 300px;
-        }
-        .console-output {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 10px;
-            padding-right: 5px;
-            color: #e2e8f0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .console-input-line {
-            display: flex;
-            align-items: center;
-            margin-top: auto; /* Push input to bottom */
-        }
-        .console-input-line span {
-            color: #00ffcc;
-            margin-right: 5px;
-            font-weight: bold;
-        }
-        .console-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #e2e8f0;
-            flex-grow: 1;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.95rem;
-            caret-color: #ffd700; /* Blinking cursor color */
-        }
-        .console-output p {
-            margin-bottom: 5px;
-        }
-        .console-output .response {
-            color: #a3e635; /* Green for responses */
-        }
-        .console-output .error {
-            color: #ef4444; /* Red for errors */
-        }
-
-        /* Photo grid for memory gallery */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .photo-grid img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #00ffcc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
-        }
-        .photo-grid img:hover {
-            transform: scale(1.05);
         }
 
         /* Video element styling */
@@ -1595,6 +1274,76 @@
             100% { opacity: 0.3; }
         }
 
+        /* Custom aspect ratio for portrait images */
+        .aspect-portrait {
+            aspect-ratio: 9 / 16;
+        }
+
+        /* Styles for the image modal/lightbox */
+        .image-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 200; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain; /* Ensure the whole image fits within the modal */
+            border: 5px solid #00ffcc;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+            animation: modal-fade-in 0.3s ease-out;
+        }
+
+        @keyframes modal-fade-in {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .image-modal-close:hover,
+        .image-modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Digital Nobel Prize text color */
+        #giftContents .bg-yellow-100 p {
+            color: black !important; /* Force text to be black */
+        }
+        #giftContents .bg-yellow-100 p.text-2xl,
+        #giftContents .bg-yellow-100 p.text-lg,
+        #giftContents .bg-yellow-100 p.text-3xl,
+        #giftContents .bg-yellow-100 p.text-base,
+        #giftContents .bg-yellow-100 p.text-xl,
+        #giftContents .bg-yellow-100 p.text-sm {
+            color: black !important; /* Ensure all specific text sizes are black */
+        }
+
+
     </style>
 </head>
 <body>
@@ -1623,6 +1372,12 @@
     <div id="messageBox" class="message-box">
         <p id="messageBoxText"></p>
         <button id="messageBoxClose">OK</button>
+    </div>
+
+    <!-- Image Modal/Lightbox -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImage">
     </div>
 
     <!-- Section 1: Landing Page (Hero Section) -->
@@ -1857,11 +1612,11 @@
         <div id="giftContents" class="hidden mt-6 text-left space-y-4 bg-white p-6 rounded-lg shadow-md border border-orange-200 text-black">
             <h3 class="text-xl font-bold text-orange-800 border-b-2 border-orange-300 pb-2 mb-4">Official Nobel Prize Certificate:</h3>
             <div class="bg-yellow-100 p-4 rounded-lg border border-yellow-200 text-center">
-                <p class="text-2xl font-extrabold text-yellow-900 mb-2">NOBEL PRIZE</p>
+                <p class="text-2xl font-extrabold text-black mb-2">NOBEL PRIZE</p>
                 <p class="text-lg font-semibold text-gray-900 mb-1">Awarded to:</p>
-                <p class="text-3xl font-bold text-blue-900 mb-3">Mr. PRB</p>
+                <p class="text-3xl font-bold text-black mb-3">Mr. PRB</p>
                 <p class="text-base text-gray-900 mb-2">For excellence in:</p>
-                <p class="text-xl font-bold text-green-900">emotional intelligence, patience and bad bedtime stories.</p>
+                <p class="text-xl font-bold text-black">emotional intelligence, patience and bad bedtime stories.</p>
                 <p class="text-sm text-gray-900 mt-4">Presented by: Your invention</p>
             </div>
         </div>
@@ -1953,13 +1708,11 @@
     <!-- Section 16: Birthday card. -->
     <div class="section bg-warm-gradient" id="section-16">
         <h2>Birthday card.</h2>
-        <div class="w-full max-w-lg mx-auto rounded-xl overflow-hidden shadow-lg border-4 border-cyan-500 aspect-video flex items-center justify-center bg-gray-800">
+        <div class="w-full max-w-lg mx-auto rounded-xl overflow-hidden shadow-lg border-4 border-cyan-500 aspect-portrait flex items-center justify-center bg-gray-800">
             <!-- Birthday Card: birthday_card.png -->
             <img src="images/birthday_card.png" alt="Your Birthday Card" class="w-full h-full object-cover">
         </div>
-        <p class="text-sm text-gray-500 mt-4">
-            (Please replace the placeholder image URL with your actual birthday card image!)
-        </p>
+        <!-- Removed the placeholder text here -->
         <!-- Guitar string background animation container -->
         <div class="guitar-string-bg-container">
             <div class="guitar-string-bg-line"></div>
@@ -2476,6 +2229,35 @@
                     });
                 }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
                 observer.observe(section3);
+            }
+        });
+
+        // --- Image Modal/Lightbox Logic (Memory Gallery) ---
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const imageModalClose = document.querySelector('.image-modal-close');
+        const photoGridImages = document.querySelectorAll('.photo-grid img');
+
+        // Add click event listeners to all images in the photo grid
+        photoGridImages.forEach(img => {
+            img.addEventListener('click', () => {
+                imageModal.style.display = 'flex'; // Show the modal
+                modalImage.src = img.src; // Set the modal image source
+                document.body.classList.add('dim-bg'); // Dim the background
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        imageModalClose.addEventListener('click', () => {
+            imageModal.style.display = 'none'; // Hide the modal
+            document.body.classList.remove('dim-bg'); // Restore background brightness
+        });
+
+        // Close the modal when clicking outside the image
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                imageModal.style.display = 'none';
+                document.body.classList.remove('dim-bg');
             }
         });
 
