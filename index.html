@@ -1988,9 +1988,23 @@
         const consoleInput = document.getElementById('consoleInput');
         const consoleOutput = document.getElementById('consoleOutput');
 
+        const dadJokes = [
+            "Why don't scientists trust atoms? Because they make up everything!",
+            "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+            "What do you call a fake noodle? An impasta!",
+            "Why did the scarecrow win an award? Because he was outstanding in his field!",
+            "I'm reading a book on anti-gravity. It's impossible to put down!",
+            "Did you hear about the chameleon who couldn't change color? He had a reptile dysfunction.",
+            "Why did the bicycle fall over? Because it was two-tired!",
+            "What's orange and sounds like a parrot? A carrot!"
+        ];
+
         const commands = {
             "help()": "Available commands: joke(), hug.papa(), calculate.happiness(me), run.simulation('family_dinner'), debug.life_problems(), tell.secret()",
-            "joke()": "Why did the physics teacher break up with the biology teacher? They had no chemistry!",
+            "joke()": () => {
+                const randomIndex = Math.floor(Math.random() * dadJokes.length);
+                return dadJokes[randomIndex];
+            },
             "hug.papa()": "Processing... Affectionate embrace initiated. Warmth parameters nominal.",
             "calculate.happiness(me)": "Result: Infinite. Your existence is a positive integer in my equation.",
             "run.simulation('family_dinner')": "Simulation complete. Expected outcome: High-energy conversations and optimal food consumption.",
@@ -2014,9 +2028,10 @@
                 appendToConsole(`> ${command}`);
                 consoleInput.value = ''; // Clear input
 
-                const response = commands[command];
-                if (response) {
-                    appendToConsole(response, 'response');
+                if (typeof commands[command] === 'function') {
+                    appendToConsole(commands[command](), 'response');
+                } else if (commands[command]) {
+                    appendToConsole(commands[command], 'response');
                 } else {
                     appendToConsole(`Error: Command '${command}' not found. Type 'help()' for assistance.`, 'error');
                 }
